@@ -62,9 +62,7 @@ This project implements and benchmarks multiple attention variants as a PyTorch 
 
 ---
 
-## Setup
-
-### Requirements
+## Requirements
 - CUDA 12.2
 - PyTorch (C++ extension support)
 - Python 3.10+
