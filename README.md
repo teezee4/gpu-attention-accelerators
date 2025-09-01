@@ -62,25 +62,10 @@ This project implements and benchmarks multiple attention variants as a PyTorch 
 
 ---
 
-## Setup & Usage
+## Setup
 
 ### Requirements
 - CUDA 12.2
 - PyTorch (C++ extension support)
 - Python 3.10+
 - NVIDIA V100 GPU (tested)
-
-### Build & Run
-```bash
-# Clone repo
-git clone https://github.com/your-username/fast-attention-kernels.git
-cd fast-attention-kernels/src
-
-# Activate environment
-source project120_env/bin/activate
-
-# Run full benchmarks
-python run_tests.py
-
-# Run specific configuration
-python test_driver.py --embed_dim 128 --seq_len 1024
