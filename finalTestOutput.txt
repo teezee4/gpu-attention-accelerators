@@ -1,0 +1,478 @@
+[tzeeshan@login-i15:~] $srun -p gpu -A eecs120_class_gpu --gres=gpu:V100:1 --time=200:00 --mem=50G --pty /bin/bash -i
+srun: job 36538389 queued and waiting for resources
+srun: job 36538389 has been allocated resources
+[tzeeshan@hpc3-gpu-16-05:~] $module load python/3.10.2
+[tzeeshan@hpc3-gpu-16-05:~] $module load cuda/12.2.0
+[tzeeshan@hpc3-gpu-16-05:~] $module load gcc/11.2.0
+[tzeeshan@hpc3-gpu-16-05:~] $cd eecs120
+[tzeeshan@hpc3-gpu-16-05:~/eecs120] $source project120_env/bin/activate
+(project120_env) [tzeeshan@hpc3-gpu-16-05:~/eecs120] $cd src 
+(project120_env) [tzeeshan@hpc3-gpu-16-05:~/eecs120/src] $python run_tests.py
+Running test for seq_len=1024, embed_dim=128
+Transpose kernel is working correctly
+
+Running with embed_dim=128, seq_len=1024
+Vanilla attention time: 0.17950719594955444 ms
+
+===== Testing Naive attention =====
+Naive attention time: 56.43729858398437 ms
+Relative error: 9.633479294279823e-07
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 120.88616943359375 ms
+Relative error: 9.731172667670762e-07
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 2.298524856567383 ms
+Relative error: 9.633479294279823e-07
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 110.5143798828125 ms
+Relative error: 1.5452700853347778
+Block-sparse attention (causal) is incorrect
+Relative error 1.5452700853347778 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 23.114239501953126 ms
+Relative error: 2.151451587677002
+Block-sparse attention (local) is incorrect
+Relative error 2.151451587677002 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 56.44 ms
+Fused attention: 120.89 ms (Speedup vs naive: 0.47x)
+TC Fused attention: 2.30 ms (Speedup vs naive: 24.55x, vs fused: 52.59x)
+Block-sparse attention (causal): 110.51 ms (Speedup vs naive: 0.51x)
+Block-sparse attention (local): 23.11 ms (Speedup vs naive: 2.44x)
+Running test for seq_len=1024, embed_dim=256
+Transpose kernel is working correctly
+
+Running with embed_dim=256, seq_len=1024
+Vanilla attention time: 0.19046399593353272 ms
+
+===== Testing Naive attention =====
+Naive attention time: 112.1986083984375 ms
+Relative error: 7.719058316979499e-07
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 242.669775390625 ms
+Relative error: 7.692061103625747e-07
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 3.2194049835205076 ms
+Relative error: 7.719058316979499e-07
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 221.8998779296875 ms
+Relative error: 1.473264455795288
+Block-sparse attention (causal) is incorrect
+Relative error 1.473264455795288 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 46.42088928222656 ms
+Relative error: 2.0880544185638428
+Block-sparse attention (local) is incorrect
+Relative error 2.0880544185638428 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 112.20 ms
+Fused attention: 242.67 ms (Speedup vs naive: 0.46x)
+TC Fused attention: 3.22 ms (Speedup vs naive: 34.85x, vs fused: 75.38x)
+Block-sparse attention (causal): 221.90 ms (Speedup vs naive: 0.51x)
+Block-sparse attention (local): 46.42 ms (Speedup vs naive: 2.42x)
+Running test for seq_len=1024, embed_dim=512
+Transpose kernel is working correctly
+
+Running with embed_dim=512, seq_len=1024
+Vanilla attention time: 0.2945008039474487 ms
+
+===== Testing Naive attention =====
+Naive attention time: 222.8190185546875 ms
+Relative error: 1.3699687997359433e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 485.468603515625 ms
+Relative error: 1.3896005839342251e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 5.062092971801758 ms
+Relative error: 1.3699687997359433e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 446.825830078125 ms
+Relative error: 1.506098985671997
+Block-sparse attention (causal) is incorrect
+Relative error 1.506098985671997 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 93.20028076171874 ms
+Relative error: 2.119094133377075
+Block-sparse attention (local) is incorrect
+Relative error 2.119094133377075 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 222.82 ms
+Fused attention: 485.47 ms (Speedup vs naive: 0.46x)
+TC Fused attention: 5.06 ms (Speedup vs naive: 44.02x, vs fused: 95.90x)
+Block-sparse attention (causal): 446.83 ms (Speedup vs naive: 0.50x)
+Block-sparse attention (local): 93.20 ms (Speedup vs naive: 2.39x)
+Running test for seq_len=1024, embed_dim=1024
+Transpose kernel is working correctly
+
+Running with embed_dim=1024, seq_len=1024
+Vanilla attention time: 0.4940800189971924 ms
+
+===== Testing Naive attention =====
+Naive attention time: 444.262939453125 ms
+Relative error: 1.366615265396831e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 973.2765625 ms
+Relative error: 1.3873116131435381e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 8.709120178222657 ms
+Relative error: 1.366615265396831e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 890.623046875 ms
+Relative error: 1.518320918083191
+Block-sparse attention (causal) is incorrect
+Relative error 1.518320918083191 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 185.33258056640625 ms
+Relative error: 2.1257219314575195
+Block-sparse attention (local) is incorrect
+Relative error 2.1257219314575195 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 444.26 ms
+Fused attention: 973.28 ms (Speedup vs naive: 0.46x)
+TC Fused attention: 8.71 ms (Speedup vs naive: 51.01x, vs fused: 111.75x)
+Block-sparse attention (causal): 890.62 ms (Speedup vs naive: 0.50x)
+Block-sparse attention (local): 185.33 ms (Speedup vs naive: 2.40x)
+Running test for seq_len=2048, embed_dim=256
+Transpose kernel is working correctly
+
+Running with embed_dim=256, seq_len=2048
+Vanilla attention time: 0.7516672134399414 ms
+
+===== Testing Naive attention =====
+Naive attention time: 228.8126953125 ms
+Relative error: 1.104080752156733e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 485.30654296875 ms
+Relative error: 1.1288138921372592e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 9.905817413330078 ms
+Relative error: 1.104080752156733e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 468.80908203125 ms
+Relative error: 1.7481745481491089
+Block-sparse attention (causal) is incorrect
+Relative error 1.7481745481491089 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 46.77457885742187 ms
+Relative error: 3.1711056232452393
+Block-sparse attention (local) is incorrect
+Relative error 3.1711056232452393 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 228.81 ms
+Fused attention: 485.31 ms (Speedup vs naive: 0.47x)
+TC Fused attention: 9.91 ms (Speedup vs naive: 23.10x, vs fused: 48.99x)
+Block-sparse attention (causal): 468.81 ms (Speedup vs naive: 0.49x)
+Block-sparse attention (local): 46.77 ms (Speedup vs naive: 4.89x)
+Running test for seq_len=2048, embed_dim=512
+Transpose kernel is working correctly
+
+Running with embed_dim=512, seq_len=2048
+Vanilla attention time: 1.0201104164123536 ms
+
+===== Testing Naive attention =====
+Naive attention time: 455.471240234375 ms
+Relative error: 1.5382489664261811e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 973.09833984375 ms
+Relative error: 1.5585962955810828e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 16.990924072265624 ms
+Relative error: 1.5382489664261811e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 937.7783203125 ms
+Relative error: 1.6688439846038818
+Block-sparse attention (causal) is incorrect
+Relative error 1.6688439846038818 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 93.08021850585938 ms
+Relative error: 3.065782308578491
+Block-sparse attention (local) is incorrect
+Relative error 3.065782308578491 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 455.47 ms
+Fused attention: 973.10 ms (Speedup vs naive: 0.47x)
+TC Fused attention: 16.99 ms (Speedup vs naive: 26.81x, vs fused: 57.27x)
+Block-sparse attention (causal): 937.78 ms (Speedup vs naive: 0.49x)
+Block-sparse attention (local): 93.08 ms (Speedup vs naive: 4.89x)
+Running test for seq_len=2048, embed_dim=1024
+Transpose kernel is working correctly
+
+Running with embed_dim=1024, seq_len=2048
+Vanilla attention time: 2.253670310974121 ms
+
+===== Testing Naive attention =====
+Naive attention time: 905.7251953125 ms
+Relative error: 1.594156060491514e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 1947.4958984375 ms
+Relative error: 1.6289960740323295e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 31.09805908203125 ms
+Relative error: 1.594156060491514e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 1868.830859375 ms
+Relative error: 1.6906154155731201
+Block-sparse attention (causal) is incorrect
+Relative error 1.6906154155731201 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 185.3538330078125 ms
+Relative error: 3.102226495742798
+Block-sparse attention (local) is incorrect
+Relative error 3.102226495742798 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 905.73 ms
+Fused attention: 1947.50 ms (Speedup vs naive: 0.47x)
+TC Fused attention: 31.10 ms (Speedup vs naive: 29.12x, vs fused: 62.62x)
+Block-sparse attention (causal): 1868.83 ms (Speedup vs naive: 0.48x)
+Block-sparse attention (local): 185.35 ms (Speedup vs naive: 4.89x)
+Running test for seq_len=2048, embed_dim=2048
+Transpose kernel is working correctly
+
+Running with embed_dim=2048, seq_len=2048
+Vanilla attention time: 4.09062385559082 ms
+
+===== Testing Naive attention =====
+Naive attention time: 1806.3919921875 ms
+Relative error: 2.0020033844048157e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 3895.64765625 ms
+Relative error: 2.0115219285798958e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 59.49593505859375 ms
+Relative error: 2.0020033844048157e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 3739.9 ms
+Relative error: 1.6984343528747559
+Block-sparse attention (causal) is incorrect
+Relative error 1.6984343528747559 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 370.32177734375 ms
+Relative error: 3.1038339138031006
+Block-sparse attention (local) is incorrect
+Relative error 3.1038339138031006 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 1806.39 ms
+Fused attention: 3895.65 ms (Speedup vs naive: 0.46x)
+TC Fused attention: 59.50 ms (Speedup vs naive: 30.36x, vs fused: 65.48x)
+Block-sparse attention (causal): 3739.90 ms (Speedup vs naive: 0.48x)
+Block-sparse attention (local): 370.32 ms (Speedup vs naive: 4.88x)
+Running test for seq_len=4096, embed_dim=512
+Transpose kernel is working correctly
+
+Running with embed_dim=512, seq_len=4096
+Vanilla attention time: 4.2587646484375 ms
+
+===== Testing Naive attention =====
+Naive attention time: 912.45927734375 ms
+Relative error: 1.8855567986975075e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 1948.77421875 ms
+Relative error: 1.908644435388851e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 61.779351806640626 ms
+Relative error: 1.8855567986975075e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 1916.60625 ms
+Relative error: 1.8672816753387451
+Block-sparse attention (causal) is incorrect
+Relative error 1.8672816753387451 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 93.31881103515624 ms
+Relative error: 4.417581081390381
+Block-sparse attention (local) is incorrect
+Relative error 4.417581081390381 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 912.46 ms
+Fused attention: 1948.77 ms (Speedup vs naive: 0.47x)
+TC Fused attention: 61.78 ms (Speedup vs naive: 14.77x, vs fused: 31.54x)
+Block-sparse attention (causal): 1916.61 ms (Speedup vs naive: 0.48x)
+Block-sparse attention (local): 93.32 ms (Speedup vs naive: 9.78x)
+Running test for seq_len=4096, embed_dim=1024
+Transpose kernel is working correctly
+
+Running with embed_dim=1024, seq_len=4096
+Vanilla attention time: 7.90118408203125 ms
+
+===== Testing Naive attention =====
+Naive attention time: 1820.7658203125 ms
+Relative error: 1.5773379118400044e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 3894.311328125 ms
+Relative error: 1.6055436162787373e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 120.9470947265625 ms
+Relative error: 1.5773379118400044e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 3820.42578125 ms
+Relative error: 1.9330703020095825
+Block-sparse attention (causal) is incorrect
+Relative error 1.9330703020095825 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 185.90115966796876 ms
+Relative error: 4.503286838531494
+Block-sparse attention (local) is incorrect
+Relative error 4.503286838531494 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 1820.77 ms
+Fused attention: 3894.31 ms (Speedup vs naive: 0.47x)
+TC Fused attention: 120.95 ms (Speedup vs naive: 15.05x, vs fused: 32.20x)
+Block-sparse attention (causal): 3820.43 ms (Speedup vs naive: 0.48x)
+Block-sparse attention (local): 185.90 ms (Speedup vs naive: 9.79x)
+Running test for seq_len=4096, embed_dim=2048
+Transpose kernel is working correctly
+
+Running with embed_dim=2048, seq_len=4096
+Vanilla attention time: 14.629530334472657 ms
+
+===== Testing Naive attention =====
+Naive attention time: 3630.533984375 ms
+Relative error: 2.7158223474543775e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 7790.6734375 ms
+Relative error: 2.7245546334597748e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 269.5236572265625 ms
+Relative error: 2.7158223474543775e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 7633.6625 ms
+Relative error: 1.8925114870071411
+Block-sparse attention (causal) is incorrect
+Relative error 1.8925114870071411 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 371.5673095703125 ms
+Relative error: 4.471726417541504
+Block-sparse attention (local) is incorrect
+Relative error 4.471726417541504 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 3630.53 ms
+Fused attention: 7790.67 ms (Speedup vs naive: 0.47x)
+TC Fused attention: 269.52 ms (Speedup vs naive: 13.47x, vs fused: 28.91x)
+Block-sparse attention (causal): 7633.66 ms (Speedup vs naive: 0.48x)
+Block-sparse attention (local): 371.57 ms (Speedup vs naive: 9.77x)
+Running test for seq_len=4096, embed_dim=4096
+Transpose kernel is working correctly
+
+Running with embed_dim=4096, seq_len=4096
+Vanilla attention time: 27.836825561523437 ms
+
+===== Testing Naive attention =====
+Naive attention time: 7266.80625 ms
+Relative error: 2.6959876322507625e-06
+Naive attention implementation is correct!
+
+===== Testing Fused attention =====
+Fused attention time: 15579.8375 ms
+Relative error: 2.7034839149564505e-06
+Fused attention implementation is correct!
+
+===== Testing Tensor Core fused attention =====
+Tensor Core fused attention time: 531.709375 ms
+Relative error: 2.6959876322507625e-06
+Tensor Core fused attention implementation is correct!
+
+===== Testing Block-sparse attention (causal) =====
+Block-sparse attention (causal) time: 15266.2109375 ms
+Relative error: 1.883083701133728
+Block-sparse attention (causal) is incorrect
+Relative error 1.883083701133728 is more than 1e-4
+
+===== Testing Block-sparse attention (local) =====
+Block-sparse attention (local) time: 742.8083984375 ms
+Relative error: 4.461106300354004
+Block-sparse attention (local) is incorrect
+Relative error 4.461106300354004 is more than 1e-4
+
+===== Performance Comparison =====
+Naive attention: 7266.81 ms
+Fused attention: 15579.84 ms (Speedup vs naive: 0.47x)
+TC Fused attention: 531.71 ms (Speedup vs naive: 13.67x, vs fused: 29.30x)
+Block-sparse attention (causal): 15266.21 ms (Speedup vs naive: 0.48x)
+Block-sparse attention (local): 742.81 ms (Speedup vs naive: 9.78x)
