@@ -1,4 +1,3 @@
-# gpu-attention-accelerators
 # Fast Attention Kernels 
 **Custom CUDA + PyTorch kernels for Transformer attention mechanisms with Tensor Core acceleration**  
 
